@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>YouSafe</title>
     <style>
         nav{
             -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
@@ -202,32 +202,37 @@
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body style="background-color: #cccc;overflow: hidden">
-
-<div id="zonas-seguras" style="position: fixed;top: 10px;left: -60px;z-index: 9;font-weight: bold;color: rgb(0,210,187);text-shadow: 0px 0px 2px rgba(150, 150, 150, 0.7);">
-    ZONAS SEGURAS
+<div style="position: fixed;top: 10px;left: 0;right: 0;z-index: 9;padding: 0 10px;">
+    <div
+            id="zonas-seguras"
+            style="float: left;z-index: 9;font-weight: bold;color: rgb(0,210,187);text-shadow: 0px 0px 2px rgba(150, 150, 150, 0.7);margin-bottom: 3px;cursor: pointer;"
+    >
+        ZONAS SEGURAS
+    </div>
+    <div
+            id="zonas-perigosas"
+            class="active"
+            style="float: right;z-index: 9;text-align: center;font-weight: bold;color: rgb(183,0,0);text-shadow: 0px 0px 2px rgba(150, 150, 150, 0.7);margin-bottom: 3px;cursor: pointer;"
+    >
+        ZONAS PERIGOSAS
+    </div>
 </div>
-<div id="zonas-perigosas" style="position: fixed;top: 10px;left: 0;right: 0;z-index: 9;text-align: center;font-weight: bold;color: rgb(183,0,0);text-shadow: 0px 0px 2px rgba(150, 150, 150, 0.7);">
-    ZONAS PERIGOSAS
-</div>
 
-<div style="position: fixed;left: 20px;right: 20px;z-index: 9;top: 50px;">
+<div id="search-div" style="position: fixed;left: 20px;right: 20px;z-index: 9;top: 50px;">
     <div class="input-group">
-        <input id="pac-input" type="text" class="form-control red" placeholder="" aria-describedby="basic-addon2">
+        <span class="input-group-addon green" id="basic-addon3" style="display: none"><i class="fa fa-search"></i></span>
+        <input id="pac-input" type="text" class="form-control red float-right" placeholder="" aria-describedby="basic-addon2">
         <span class="input-group-addon red" id="basic-addon2"><i class="fa fa-search"></i></span>
     </div>
 </div>
 
-
 <div id="map" style="width: 100%;height: 100%"></div>
-<!--<div style="width: 100%;height: 35%;background-color: #FFFFFF">
-    teste
-</div>-->
 
-<a href="#" class="float red" data-toggle="modal" data-target="#reportModal">
+<a href="#" id="report-btn" class="float red" data-toggle="modal" data-target="#reportModal">
     <i class="fa fa-map-marker-alt my-float"></i>
 </a>
 
-<a href="#" id="my-pos" class="float red" style="top: 175px;">
+<a href="#" id="my-pos" class="float red">
     <i class="fa fa-crosshairs my-float"></i>
 </a>
 
@@ -235,46 +240,32 @@
 <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Reportar Incidente</h5>
+            <div class="modal-body">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-            </div>
-            <div class="modal-body">
+
                 <form id="report-form">
-                    <label>Data:</label>
-                    <input type="text" name="data_registro" class="form-control date">
+                    <div class="row">
+                        <div class="col-md-12">
 
-                    <br>
+                        </div>
+                    </div>
 
-                    <label>Seu Nome:</label>
-                    <input type="text" name="nome" class="form-control">
+                    <div class="row">
+                        <div class="col-md-12" style="padding-left: 0;">
+                            <input type="text" name="data_registro" class="form-control date">
+                        </div>
+                    </div>
 
                     <br>
 
                     <div class="row">
-                        <div class="col-md-12">
-                            <label>Tipo:</label>
+                        <div class="col-md-9 col-8">
+                            <input type="text" name="nome" class="form-control" placeholder="Nome">
                         </div>
-
-                        <div class="col-xs-4 col-md-4">
-                            <input type="checkbox" name="tipo" value="1" class=""> Assédio
-                        </div>
-
-                        <div class="col-xs-4 col-md-4">
-                            <input type="checkbox" name="tipo" value="2" class=""> Furto
-                        </div>
-                        <div class="col-xs-4 col-md-4">
-                            <input type="checkbox" name="tipo" value="3" class=""> Roubo
-                        </div>
-
-                        <div class="col-xs-4 col-md-4">
-                            <input type="checkbox" name="tipo" value="4" class=""> Homofobia
-                        </div>
-
-                        <div class="col-xs-4 col-md-4">
-                            <input type="checkbox" name="tipo" value="5" class=""> Outro
+                        <div class="col-md-3 col-4">
+                            <input type="text" name="idade" class="form-control" placeholder="Idade">
                         </div>
                     </div>
 
@@ -282,47 +273,37 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <label>Descrição:</label>
-                            <textarea name="descricao" class="form-control"></textarea>
+                            <textarea name="descricao" placeholder="Escreva aqui seu relato!" class="form-control"></textarea>
                         </div>
                     </div>
 
                     <br>
 
                     <div class="row">
-                        <div class="col-md-12">
-                            <label>Nivel de Perigo:</label>
+                        <div class="col-4 col-md-4">
+                            <input type="checkbox" name="tipo" value="1" > Assédio
                         </div>
 
-                        <div class="col-xs-2 col-md-2 offset-xs-1 offset-md-1">
-                            <input type="checkbox" name="perigo" value="1" class="">
+                        <div class="col-4 col-md-4">
+                            <input type="checkbox" name="tipo" value="2" > Furto
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <input type="checkbox" name="tipo" value="3" > Roubo
                         </div>
 
-                        <div class="col-xs-2 col-md-2">
-                            <input type="checkbox" name="perigo" value="2" class="">
-                        </div>
-                        <div class="col-xs-2 col-md-2">
-                            <input type="checkbox" name="perigo" value="3" class="">
+                        <div class="col-4 col-md-4">
+                            <input type="checkbox" name="tipo" value="4" > Homofobia
                         </div>
 
-                        <div class="col-xs-2 col-md-2">
-                            <input type="checkbox" name="perigo" value="4" class="">
-                        </div>
-
-                        <div class="col-xs-2 col-md-2">
-                            <input type="checkbox" name="perigo" value="5" class="">
+                        <div class="col-4 col-md-4" >
+                            <input type="checkbox" name="tipo" value="5" > Outro
                         </div>
                     </div>
-
                 </form>
-            </div>
-            <div class="modal-footer" style="padding: 0;">
-                <button id="send-report" type="button" class="btn btn-primary" style="border-radius: 0;padding: 20px;width: 100%;-webkit-border-bottom-right-radius: 4px;
--webkit-border-bottom-left-radius: 4px;
--moz-border-radius-bottomright: 4px;
--moz-border-radius-bottomleft: 4px;
-border-bottom-right-radius: 4px;
-border-bottom-left-radius: 4px;">Save changes</button>
+                <br>
+                <div style="text-align: center">
+                    <a href="" class="btn btn-outline-secondary" id="send-report" style="border-radius: 20px;">Compartilhar</a>
+                </div>
             </div>
         </div>
     </div>
@@ -353,6 +334,9 @@ border-bottom-left-radius: 4px;">Save changes</button>
 <script>
     var map;
     var safe = 0;
+    var getPontos = function () {
+
+    };
 
     function initMap() {
         var cache = localStorage.getItem('pos');
@@ -372,15 +356,190 @@ border-bottom-left-radius: 4px;">Save changes</button>
         map = new google.maps.Map(document.getElementById('map'), {
             center: (typeof cache === 'string') ? JSON.parse(cache) : {lat: -34.397, lng: 150.644},
             zoom: 16,
-            zoomControl: true,
-            zoomControlOptions: {
-                position: google.maps.ControlPosition.RIGHT_CENTER
-            },
+            zoomControl: ( $(window).width() > 800 ),
+            zoomControlOptions: { position: google.maps.ControlPosition.CENTER_BOTTOM },
             scaleControl: false,
             mapTypeControl: false,
             streetViewControl: false,
-            fullscreenControl: false
+            fullscreenControl: false,
+            styles: [
+                {
+                    "featureType": "water",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#e9e9e9"
+                        },
+                        {
+                            "lightness": 17
+                        }
+                    ]
+                },
+                {
+                    "featureType": "landscape",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#f5f5f5"
+                        },
+                        {
+                            "lightness": 20
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "geometry.fill",
+                    "stylers": [
+                        {
+                            "color": "#ffffff"
+                        },
+                        {
+                            "lightness": 17
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                        {
+                            "color": "#ffffff"
+                        },
+                        {
+                            "lightness": 29
+                        },
+                        {
+                            "weight": 0.2
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.arterial",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#ffffff"
+                        },
+                        {
+                            "lightness": 18
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.local",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#ffffff"
+                        },
+                        {
+                            "lightness": 16
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#f5f5f5"
+                        },
+                        {
+                            "lightness": 21
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.park",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#dedede"
+                        },
+                        {
+                            "lightness": 21
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.text.stroke",
+                    "stylers": [
+                        {
+                            "visibility": "on"
+                        },
+                        {
+                            "color": "#ffffff"
+                        },
+                        {
+                            "lightness": 16
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "saturation": 36
+                        },
+                        {
+                            "color": "#333333"
+                        },
+                        {
+                            "lightness": 40
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.icon",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "transit",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#f2f2f2"
+                        },
+                        {
+                            "lightness": 19
+                        }
+                    ]
+                },
+                {
+                    "featureType": "administrative",
+                    "elementType": "geometry.fill",
+                    "stylers": [
+                        {
+                            "color": "#fefefe"
+                        },
+                        {
+                            "lightness": 20
+                        }
+                    ]
+                },
+                {
+                    "featureType": "administrative",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                        {
+                            "color": "#fefefe"
+                        },
+                        {
+                            "lightness": 17
+                        },
+                        {
+                            "weight": 1.2
+                        }
+                    ]
+                }
+            ]
         });
+
         var input = document.getElementById('pac-input');
         var searchBox = new google.maps.places.SearchBox(input);
 
@@ -390,8 +549,7 @@ border-bottom-left-radius: 4px;">Save changes</button>
 
         searchBox.addListener('places_changed', function() {
             var places = searchBox.getPlaces();
-
-            if (places.length == 0) { return; }
+            if (places.length === 0) { return; }
 
             var bounds = new google.maps.LatLngBounds();
             places.forEach(function(place) {
@@ -418,17 +576,18 @@ border-bottom-left-radius: 4px;">Save changes</button>
             }, function() {
                 console.error('Errooooow');
             });
-        } else {
-            console.error('Errooooow');
-        }
+        } else { console.error('Errooooow'); }
 
         $('#my-pos').click(function () {
+            var cache = localStorage.getItem('pos');
+            if(typeof cache === 'string'){ map.setCenter( JSON.parse(cache) ); }
+
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
                     var pos = { lat: position.coords.latitude, lng: position.coords.longitude };
                     map.setCenter(pos);
 
-                    localStorage.setItem('pos',JSON.stringify(pos));
+                    localStorage.setItem('pos', JSON.stringify(pos));
                 }, function() {
                     console.error('Errooooow');
                 });
@@ -438,7 +597,7 @@ border-bottom-left-radius: 4px;">Save changes</button>
         });
 
 
-        var self = new google.maps.Marker({
+        var self   = new google.maps.Marker({
             position: map.getCenter(),
             map: null,
             title: 'Hello World!',
@@ -450,7 +609,6 @@ border-bottom-left-radius: 4px;">Save changes</button>
                 scaledSize: new google.maps.Size(20, 20)
             }
         });
-
         var marker = new google.maps.Marker({
             position: map.getCenter(),
             map: map,
@@ -463,12 +621,13 @@ border-bottom-left-radius: 4px;">Save changes</button>
             var center = map.getCenter();
             marker.setPosition(center);
 
-            console.log('lat: '+ center.lat(),'lng: '+center.lng());
+            //console.log('lat: '+ center.lat(),'lng: '+center.lng());
         });
 
         var last_data = '';
-        var pontos = [];
-        var getPontos = function () {
+        var pontos    = [];
+
+        getPontos = function () {
             $.post( "http://localhost/hackbackend/", {"safe":safe},function( data ) {
                 if(JSON.stringify(data) !== last_data){
                     if('return' in data){
@@ -477,34 +636,32 @@ border-bottom-left-radius: 4px;">Save changes</button>
                         }
 
                         var return_ = data.return;
-                        $.each(return_,function (c,d) {
-
+                        $.each(return_, function (c, d) {
                             var contentString =
-                                '<div id="content">'+
-                                    '<div id="siteNotice">'+
-                                    '</div>'+
-                                    '<div id="bodyContent">'+
-                                    '<p>' +
-                                    '<ul>' +
-                                    '<li>Nome: '+d.nome+'</li>' +
-                                    '<li>Tipo: '+d.tipo+'</li>' +
-                                    '<li>Perigo: '+d.perigo+'</li>' +
-                                    '<li>Texto: '+d.descricao+'</li>' +
-                                    '</ul>' +
-                                    '</p>'+
+                                '<div class="modal fade" id="'+d.id_report+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">' +
+                                '    <div class="modal-dialog" role="document">' +
+                                '        <div class="modal-content">' +
+                                '            <div class="modal-header">' +
+                                            '<h5 class="modal-title">Incidente</h5>' +
+                                            '<button type="button" class="close" data-dismiss="modal" aria-label="Close">\n' +
+                                            '<span aria-hidden="true">&times;</span>' +
+                                            '</button>' +
+                                            '</div>' +
+                                '            <div class="modal-body">' +
+                                            '<p style="margin-bottom: 0;">'+ d.descricao + '</p>' +
+                                            '<p style="margin-bottom: 0;text-align: right"><small>'+ moment(d.data_registro).format('DD/MM/YYYY HH:mm') + '</small></p>'+
+                                        '</div>'+
                                     '</div>'+
                                 '</div>';
 
-                            var infowindow = new google.maps.InfoWindow({ content: contentString });
+                            $('body').append(contentString);
 
-
-                            //Path 6.png
                             var m = new google.maps.Marker({
                                 position: {lat: parseFloat(d.lat), lng: parseFloat(d.lng)},
                                 map: map,
                                 title: 'Hello World!',
                                 icon: {
-                                    url: "img/Path 6.png",
+                                    url: (safe == 1) ? "img/Path 8.png" : "img/Path 6.png",
                                     size: new google.maps.Size(71, 71),
                                     origin: new google.maps.Point(0, 0),
                                     anchor: new google.maps.Point(19, 38),
@@ -513,7 +670,10 @@ border-bottom-left-radius: 4px;">Save changes</button>
                             });
 
                             m.addListener('click', function() {
-                                infowindow.open(map, m);
+                                $('#' + d.id_report).modal('toggle');
+                                //$('#' + d.id_report).parent().parent().addClass('infowindow');
+
+                                //infowindow.open(map, m);
                             });
 
                             pontos.push(m);
@@ -523,7 +683,7 @@ border-bottom-left-radius: 4px;">Save changes</button>
                     }
                 }
             }).done(function( data ) {
-                setTimeout(function () { getPontos(); },3000);
+                //setTimeout(function () { getPontos(); },3000);
             });
         };
 
@@ -539,14 +699,61 @@ border-bottom-left-radius: 4px;">Save changes</button>
                 self.setPosition({ lat: crd.latitude, lng: crd.longitude });
                 self.setMap(map);
 
-            }, function(err) {
+                localStorage.setItem('pos', JSON.stringify({lat: crd.latitude, lng: crd.longitude}));
+            },
+            function(err) {
                 console.warn('ERRO(' + err.code + '): ' + err.message);
-            }, {
+            },
+            {
                 enableHighAccuracy: false,
                 timeout: 5000,
                 maximumAge: 0
             }
         );
+
+        $('#zonas-seguras').click(function () {
+            safe = 1;
+
+            $('#search-div').addClass('left');
+            $('#zonas-perigosas').removeClass('active');
+            $('#zonas-seguras').addClass('active');
+            $('.red').addClass('green').removeClass('red');
+
+
+            $('#search-div, #search-div .input-group').css('float','left');
+
+            $('#basic-addon2').hide();
+            $('#basic-addon3').show();
+
+            $('#report-btn').css('right','auto');
+            $('#report-btn').css('left','20px');
+            $('#my-pos').css('right','auto');
+            $('#my-pos').css('left','20px');
+
+            getPontos();
+        });
+
+        $('#zonas-perigosas').click(function () {
+            safe = 0;
+
+            $('#search-div').removeClass('left');
+
+            $('#zonas-seguras').removeClass('active');
+            $('#zonas-perigosas').addClass('active');
+            $('.green').addClass('red').removeClass('green');
+
+            $('#search-div, #search-div .input-group').css('float','right');
+
+            $('#basic-addon2').show();
+            $('#basic-addon3').hide();
+
+            $('#report-btn').css('left','auto');
+            $('#report-btn').css('right','20px');
+            $('#my-pos').css('left','auto');
+            $('#my-pos').css('right','20px');
+
+            getPontos();
+        });
 
     }
     function getFormData($form){
@@ -577,15 +784,6 @@ border-bottom-left-radius: 4px;">Save changes</button>
             $('#reportModal').modal('toggle');
             $('#messageModal').modal('toggle');
         });
-    });
-
-    $('#zonas-perigosas').click(function () {
-
-    });
-
-    $('#zonas-seguras').click(function () {
-        console.log('oi');
-        //$('#zonas-perigosas').css({"left":"auto"},{"right":"-20px;"})
     });
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0rPJopGbsHgwuDBTaVdhhxe2fPvz401o&libraries=places&callback=initMap" async defer></script>
