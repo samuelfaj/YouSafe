@@ -813,7 +813,7 @@ switch ($_GET['act']){
         $sql->insert($_POST);
     break;
     default:
-        if(!empty($_POST['safe'])) $sql->where('safe',$_POST['safe']);
+        $sql->where('safe',$_POST['safe'] ?: 0);
         $sql->select();
     break;
 }
