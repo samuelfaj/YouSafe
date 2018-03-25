@@ -43,7 +43,7 @@
 
         .pac-container {
             font-family: Roboto;
-            z-index: 1031 !important;
+            z-index: 1033 !important;
             border-top: 0 !important;
         }
 
@@ -158,13 +158,23 @@
             position:fixed;
             width:60px;
             height:60px;
-            bottom:10px;
-            right:10px;
+            top:100px;
+            right:20px;
             background-color:#FFFFFF;
             color:#666;
             border-radius:50px;
             text-align:center;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .float.green{
+            border:1px solid rgb(0,210,187);
+            color: rgb(0,210,187);
+        }
+
+        .float.red{
+            border:1px solid rgb(183,0,0);
+            color:  rgb(183,0,0);
         }
 
         .my-float{
@@ -191,20 +201,35 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/index.css">
 </head>
-<body style="background-color: #cccc">
-<div style="position: fixed;left: 20px;right: 20px;z-index: 9;top: 20px;">
-    <input class="form-control form-control-lg" id="pac-input" type="text" placeholder="Procurar Endereço" aria-label="Procurar Endereço">
+<body style="background-color: #cccc;overflow: hidden">
+
+<div id="zonas-seguras" style="position: fixed;top: 10px;left: -60px;z-index: 9;font-weight: bold;color: rgb(0,210,187);text-shadow: 0px 0px 2px rgba(150, 150, 150, 0.7);">
+    ZONAS SEGURAS
 </div>
+<div id="zonas-perigosas" style="position: fixed;top: 10px;left: 0;right: 0;z-index: 9;text-align: center;font-weight: bold;color: rgb(183,0,0);text-shadow: 0px 0px 2px rgba(150, 150, 150, 0.7);">
+    ZONAS PERIGOSAS
+</div>
+
+<div style="position: fixed;left: 20px;right: 20px;z-index: 9;top: 50px;">
+    <div class="input-group">
+        <input id="pac-input" type="text" class="form-control red" placeholder="" aria-describedby="basic-addon2">
+        <span class="input-group-addon red" id="basic-addon2"><i class="fa fa-search"></i></span>
+    </div>
+</div>
+
 
 <div id="map" style="width: 100%;height: 100%"></div>
+<!--<div style="width: 100%;height: 35%;background-color: #FFFFFF">
+    teste
+</div>-->
 
-<a href="#" class="float" data-toggle="modal" data-target="#reportModal">
-    <i class="fa fa-plus my-float"></i>
+<a href="#" class="float red" data-toggle="modal" data-target="#reportModal">
+    <i class="fa fa-map-marker-alt my-float"></i>
 </a>
-<div class="label-container">
-    <div class="label-text">Reportar</div>
-    <i class="fa fa-play label-arrow"></i>
-</div>
+
+<a href="#" id="my-pos" class="float red" style="top: 175px;">
+    <i class="fa fa-crosshairs my-float"></i>
+</a>
 
 
 <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -333,6 +358,17 @@ border-bottom-left-radius: 4px;">Save changes</button>
         var cache = localStorage.getItem('pos');
         var crosshairShape = {coords:[0,0,0,0],type:'rect'};
 
+        var cityCircle = new google.maps.Circle({
+            strokeColor: 'rgba(1,104,181,0.3)',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: 'rgba(1,104,181,0.3)',
+            fillOpacity: 0.35,
+            map: null,
+            radius: 25
+        });
+
+
         map = new google.maps.Map(document.getElementById('map'), {
             center: (typeof cache === 'string') ? JSON.parse(cache) : {lat: -34.397, lng: 150.644},
             zoom: 16,
@@ -352,45 +388,19 @@ border-bottom-left-radius: 4px;">Save changes</button>
             searchBox.setBounds(map.getBounds());
         });
 
-        var markers = [];
         searchBox.addListener('places_changed', function() {
             var places = searchBox.getPlaces();
 
-            if (places.length == 0) {
-                return;
-            }
+            if (places.length == 0) { return; }
 
-            // Clear out the old markers.
-            markers.forEach(function(marker) {
-                marker.setMap(null);
-            });
-            markers = [];
-
-            // For each place, get the icon, name and location.
             var bounds = new google.maps.LatLngBounds();
             places.forEach(function(place) {
                 if (!place.geometry) {
                     console.log("Returned place contains no geometry");
                     return;
                 }
-                var icon = {
-                    url: place.icon,
-                    size: new google.maps.Size(71, 71),
-                    origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(17, 34),
-                    scaledSize: new google.maps.Size(25, 25)
-                };
-
-                // Create a marker for each place.
-                markers.push(new google.maps.Marker({
-                    map: map,
-                    icon: icon,
-                    title: place.name,
-                    position: place.geometry.location
-                }));
 
                 if (place.geometry.viewport) {
-                    // Only geocodes have viewport.
                     bounds.union(place.geometry.viewport);
                 } else {
                     bounds.extend(place.geometry.location);
@@ -412,6 +422,35 @@ border-bottom-left-radius: 4px;">Save changes</button>
             console.error('Errooooow');
         }
 
+        $('#my-pos').click(function () {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var pos = { lat: position.coords.latitude, lng: position.coords.longitude };
+                    map.setCenter(pos);
+
+                    localStorage.setItem('pos',JSON.stringify(pos));
+                }, function() {
+                    console.error('Errooooow');
+                });
+            } else {
+                console.error('Errooooow');
+            }
+        });
+
+
+        var self = new google.maps.Marker({
+            position: map.getCenter(),
+            map: null,
+            title: 'Hello World!',
+            icon: {
+                url: "img/Bolita.png",
+                size: new google.maps.Size(105, 105),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(10, 10),
+                scaledSize: new google.maps.Size(20, 20)
+            }
+        });
+
         var marker = new google.maps.Marker({
             position: map.getCenter(),
             map: map,
@@ -419,6 +458,7 @@ border-bottom-left-radius: 4px;">Save changes</button>
             icon: 'https://www.daftlogic.com/images/cross-hairs.gif',
             shape: crosshairShape
         });
+
         google.maps.event.addListener(map, 'center_changed', function() {
             var center = map.getCenter();
             marker.setPosition(center);
@@ -457,10 +497,19 @@ border-bottom-left-radius: 4px;">Save changes</button>
 
                             var infowindow = new google.maps.InfoWindow({ content: contentString });
 
+
+                            //Path 6.png
                             var m = new google.maps.Marker({
                                 position: {lat: parseFloat(d.lat), lng: parseFloat(d.lng)},
                                 map: map,
-                                title: 'Hello World!'
+                                title: 'Hello World!',
+                                icon: {
+                                    url: "img/Path 6.png",
+                                    size: new google.maps.Size(71, 71),
+                                    origin: new google.maps.Point(0, 0),
+                                    anchor: new google.maps.Point(19, 38),
+                                    scaledSize: new google.maps.Size(38, 38)
+                                }
                             });
 
                             m.addListener('click', function() {
@@ -479,6 +528,25 @@ border-bottom-left-radius: 4px;">Save changes</button>
         };
 
         getPontos();
+
+        navigator.geolocation.watchPosition(
+            function(pos) {
+                var crd = pos.coords;
+
+                cityCircle.setCenter({ lat: crd.latitude, lng: crd.longitude });
+                cityCircle.setMap(map);
+
+                self.setPosition({ lat: crd.latitude, lng: crd.longitude });
+                self.setMap(map);
+
+            }, function(err) {
+                console.warn('ERRO(' + err.code + '): ' + err.message);
+            }, {
+                enableHighAccuracy: false,
+                timeout: 5000,
+                maximumAge: 0
+            }
+        );
 
     }
     function getFormData($form){
@@ -511,6 +579,14 @@ border-bottom-left-radius: 4px;">Save changes</button>
         });
     });
 
+    $('#zonas-perigosas').click(function () {
+
+    });
+
+    $('#zonas-seguras').click(function () {
+        console.log('oi');
+        //$('#zonas-perigosas').css({"left":"auto"},{"right":"-20px;"})
+    });
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0rPJopGbsHgwuDBTaVdhhxe2fPvz401o&libraries=places&callback=initMap" async defer></script>
 </body>

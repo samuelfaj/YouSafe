@@ -1,8 +1,33 @@
 #pac-input{
-    width: 100%;
     border-radius: 0;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    padding: 15px;
+    border-right: 0 !important;
+
+    -webkit-border-top-left-radius: 20px;
+    -webkit-border-bottom-left-radius: 20px;
+    -moz-border-radius-topleft: 20px;
+    -moz-border-radius-bottomleft: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+#pac-input:focus {
+    z-index: -1;
+}
+#basic-addon2{
+    background-color: #FFFFFF;
+    padding: 6px 12px;
+    border-left: 0 !important;
+    z-index: 2 !important;
+
+    -webkit-border-top-right-radius: 20px;
+    -webkit-border-bottom-right-radius: 20px;
+    -moz-border-radius-topright: 20px;
+    -moz-border-radius-bottomright: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.pac-container{
+    margin-left: 10px !important;
 }
 
 @media (max-width: 1000px) {
@@ -14,4 +39,24 @@
     #pac-input{
         width: 40% !important;
     }
+    #basic-addon2{
+        font-size: 24px;
+    }
+}
+
+
+#basic-addon2.red, #pac-input.red{
+    color: rgb(183,0,0);
+    border:1px solid rgb(183,0,0);
+}
+#pac-input.red:focus {
+    border:1px solid rgb(183,0,0);
+}
+
+#basic-addon2.green, #pac-input.green{
+    color: rgb(0,210,187);
+    border:1px solid rgb(0,210,187);
+}
+#pac-input.green:focus {
+    border:1px solid rgb(0,210,187);
 }
