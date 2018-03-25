@@ -129,6 +129,9 @@
 #my-pos{
     top:195px;
 }
+#my-pos.green{
+    top:120px;
+}
 
 .input-group{
     padding: 5px 0;

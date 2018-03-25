@@ -248,12 +248,6 @@
                 <form id="report-form">
                     <div class="row">
                         <div class="col-md-12">
-
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12" style="padding-left: 0;">
                             <input type="text" name="data_registro" class="form-control date">
                         </div>
                     </div>
@@ -628,7 +622,7 @@
         var pontos    = [];
 
         getPontos = function () {
-            $.post( "http://localhost/hackbackend/", {"safe":safe},function( data ) {
+            $.post( "http://localhost/hackatown/backend/", {"safe":safe},function( data ) {
                 if(JSON.stringify(data) !== last_data){
                     if('return' in data){
                         if(pontos.length > 0){
@@ -719,6 +713,7 @@
             $('#zonas-seguras').addClass('active');
             $('.red').addClass('green').removeClass('red');
 
+            $('#report-btn').hide();
 
             $('#search-div, #search-div .input-group').css('float','left');
 
@@ -735,6 +730,8 @@
 
         $('#zonas-perigosas').click(function () {
             safe = 0;
+
+            $('#report-btn').show();
 
             $('#search-div').removeClass('left');
 
@@ -780,7 +777,7 @@
         data.lat = center.lat();
         data.lng = center.lng();
 
-        $.post( "http://localhost/hackbackend/?act=insert", data , function( cb ) {
+        $.post( "http://localhost/hackatown/backend/?act=insert", data , function( cb ) {
             $('#reportModal').modal('toggle');
             $('#messageModal').modal('toggle');
         });
