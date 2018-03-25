@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        nav{
+            -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+            -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+            box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+        }
+
+        .navbar-brand{
+            color: blueviolet !important;
+        }
+
+        nav input{
+            background-color: #fafafa !important;
+            box-shadow: none !important;
+            border: 0 !important;
+            z-index: 1031 !important;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .controls {
+            margin-top: 10px;
+            border: 1px solid transparent;
+            border-radius: 2px 0 0 2px;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            height: 32px;
+            outline: none;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        #pac-input:focus {
+            border-color: #4d90fe;
+        }
+
+        .pac-container {
+            font-family: Roboto;
+            z-index: 1031 !important;
+            border-top: 0 !important;
+        }
+
+        .pac-item{
+            padding: 5px 4px;
+        }
+
+        .pac-logo:after{
+            display: none;
+        }
+
+
+        #type-selector {
+            color: #fff;
+            background-color: #4d90fe;
+            padding: 5px 11px 0px 11px;
+        }
+
+        #type-selector label {
+            font-family: Roboto;
+            font-size: 13px;
+            font-weight: 300;
+        }
+
+        #target {
+            width: 345px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .fab {
+            position: fixed;
+            width: 56px;
+            right: 10px;
+            bottom: 10px;
+            margin-left: -28px;
+        }
+
+        .fab:hover .fab-buttons {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .fab:hover .fab-buttons__link {
+            transform: scaleY(1) scaleX(1) translateY(-16px) translateX(0px);
+        }
+
+        .fab-action-button:hover + .fab-buttons .fab-buttons__link:before {
+            visibility: visible;
+            opacity: 1;
+            transform: scale(1);
+            transform-origin: right center 0;
+            transition-delay: 0.3s;
+        }
+
+        [data-tooltip]:before {
+            top: 50%;
+            margin-top: -11px;
+            font-weight: 600;
+            border-radius: 2px;
+            background: #585858;
+            color: #fff;
+            content: attr(data-tooltip);
+            font-size: 12px;
+            text-decoration: none;
+            visibility: hidden;
+            opacity: 0;
+            padding: 4px 7px;
+            margin-right: 12px;
+            position: absolute;
+            transform: scale(0);
+            right: 100%;
+            white-space: nowrap;
+            transform-origin: top right;
+            transition: all .3s cubic-bezier(.25, .8, .25, 1);
+        }
+
+        [data-tooltip]:hover:before {
+            visibility: visible;
+            opacity: 1;
+            transform: scale(1);
+            transform-origin: right center 0;
+        }
+
+        .label-container{
+            position:fixed;
+            bottom:18px;
+            right:75px;
+            display:table;
+            visibility: hidden;
+        }
+
+        .label-text{
+            color:#FFF;
+            background:rgba(51,51,51,0.5);
+            display:table-cell;
+            vertical-align:middle;
+            padding:10px;
+            border-radius:3px;
+        }
+
+        .label-arrow{
+            display:table-cell;
+            vertical-align:middle;
+            color:#333;
+            opacity:0.5;
+        }
+
+        .float{
+            position:fixed;
+            width:60px;
+            height:60px;
+            bottom:10px;
+            right:10px;
+            background-color:#FFFFFF;
+            color:#666;
+            border-radius:50px;
+            text-align:center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .my-float{
+            font-size:24px;
+            margin-top:18px;
+        }
+
+        a.float + div.label-container {
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.5s ease;
+        }
+
+        a.float:hover + div.label-container{
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .gm-style-cc{
+            display: none;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body style="background-color: #cccc">
+<div style="position: fixed;left: 20px;right: 20px;z-index: 9;top: 20px;">
+    <input class="form-control form-control-lg" id="pac-input" type="text" placeholder="Procurar Endereço" aria-label="Procurar Endereço">
+</div>
+
+<div id="map" style="width: 100%;height: 100%"></div>
+
+<a href="#" class="float" data-toggle="modal" data-target="#reportModal">
+    <i class="fa fa-plus my-float"></i>
+</a>
+<div class="label-container">
+    <div class="label-text">Reportar</div>
+    <i class="fa fa-play label-arrow"></i>
+</div>
+
+
+<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Reportar Incidente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="report-form">
+                    <label>Data:</label>
+                    <input type="text" name="data_registro" class="form-control date">
+
+                    <br>
+
+                    <label>Seu Nome:</label>
+                    <input type="text" name="nome" class="form-control">
+
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Tipo:</label>
+                        </div>
+
+                        <div class="col-xs-4 col-md-4">
+                            <input type="checkbox" name="tipo" value="1" class=""> Assédio
+                        </div>
+
+                        <div class="col-xs-4 col-md-4">
+                            <input type="checkbox" name="tipo" value="2" class=""> Furto
+                        </div>
+                        <div class="col-xs-4 col-md-4">
+                            <input type="checkbox" name="tipo" value="3" class=""> Roubo
+                        </div>
+
+                        <div class="col-xs-4 col-md-4">
+                            <input type="checkbox" name="tipo" value="4" class=""> Homofobia
+                        </div>
+
+                        <div class="col-xs-4 col-md-4">
+                            <input type="checkbox" name="tipo" value="5" class=""> Outro
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Descrição:</label>
+                            <textarea name="descricao" class="form-control"></textarea>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Nivel de Perigo:</label>
+                        </div>
+
+                        <div class="col-xs-2 col-md-2 offset-xs-1 offset-md-1">
+                            <input type="checkbox" name="perigo" value="1" class="">
+                        </div>
+
+                        <div class="col-xs-2 col-md-2">
+                            <input type="checkbox" name="perigo" value="2" class="">
+                        </div>
+                        <div class="col-xs-2 col-md-2">
+                            <input type="checkbox" name="perigo" value="3" class="">
+                        </div>
+
+                        <div class="col-xs-2 col-md-2">
+                            <input type="checkbox" name="perigo" value="4" class="">
+                        </div>
+
+                        <div class="col-xs-2 col-md-2">
+                            <input type="checkbox" name="perigo" value="5" class="">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer" style="padding: 0;">
+                <button id="send-report" type="button" class="btn btn-primary" style="border-radius: 0;padding: 20px;width: 100%;-webkit-border-bottom-right-radius: 4px;
+-webkit-border-bottom-left-radius: 4px;
+-moz-border-radius-bottomright: 4px;
+-moz-border-radius-bottomleft: 4px;
+border-bottom-right-radius: 4px;
+border-bottom-left-radius: 4px;">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+                Obrigado por contar sua história!
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js"             integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js"       integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous"></script>
+<script src="js/jquery.mask.js"></script>
+
+<script>
+    var map;
+    var safe = 0;
+
+    function initMap() {
+        var cache = localStorage.getItem('pos');
+        var crosshairShape = {coords:[0,0,0,0],type:'rect'};
+
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: (typeof cache === 'string') ? JSON.parse(cache) : {lat: -34.397, lng: 150.644},
+            zoom: 16,
+            zoomControl: true,
+            zoomControlOptions: {
+                position: google.maps.ControlPosition.RIGHT_CENTER
+            },
+            scaleControl: false,
+            mapTypeControl: false,
+            streetViewControl: false,
+            fullscreenControl: false
+        });
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+
+        map.addListener('bounds_changed', function() {
+            searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+        searchBox.addListener('places_changed', function() {
+            var places = searchBox.getPlaces();
+
+            if (places.length == 0) {
+                return;
+            }
+
+            // Clear out the old markers.
+            markers.forEach(function(marker) {
+                marker.setMap(null);
+            });
+            markers = [];
+
+            // For each place, get the icon, name and location.
+            var bounds = new google.maps.LatLngBounds();
+            places.forEach(function(place) {
+                if (!place.geometry) {
+                    console.log("Returned place contains no geometry");
+                    return;
+                }
+                var icon = {
+                    url: place.icon,
+                    size: new google.maps.Size(71, 71),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(17, 34),
+                    scaledSize: new google.maps.Size(25, 25)
+                };
+
+                // Create a marker for each place.
+                markers.push(new google.maps.Marker({
+                    map: map,
+                    icon: icon,
+                    title: place.name,
+                    position: place.geometry.location
+                }));
+
+                if (place.geometry.viewport) {
+                    // Only geocodes have viewport.
+                    bounds.union(place.geometry.viewport);
+                } else {
+                    bounds.extend(place.geometry.location);
+                }
+            });
+            map.fitBounds(bounds);
+        });
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = { lat: position.coords.latitude, lng: position.coords.longitude };
+                map.setCenter(pos);
+
+                localStorage.setItem('pos',JSON.stringify(pos));
+            }, function() {
+                console.error('Errooooow');
+            });
+        } else {
+            console.error('Errooooow');
+        }
+
+        var marker = new google.maps.Marker({
+            position: map.getCenter(),
+            map: map,
+            title: 'Hello World!',
+            icon: 'https://www.daftlogic.com/images/cross-hairs.gif',
+            shape: crosshairShape
+        });
+        google.maps.event.addListener(map, 'center_changed', function() {
+            var center = map.getCenter();
+            marker.setPosition(center);
+
+            console.log('lat: '+ center.lat(),'lng: '+center.lng());
+        });
+
+        var last_data = '';
+        var pontos = [];
+        var getPontos = function () {
+            $.post( "http://localhost/hackbackend/", {"safe":safe},function( data ) {
+                if(JSON.stringify(data) !== last_data){
+                    if('return' in data){
+                        if(pontos.length > 0){
+                            $.each(pontos,function (a,b) { b.setMap(null); });
+                        }
+
+                        var return_ = data.return;
+                        $.each(return_,function (c,d) {
+
+                            var contentString =
+                                '<div id="content">'+
+                                    '<div id="siteNotice">'+
+                                    '</div>'+
+                                    '<div id="bodyContent">'+
+                                    '<p>' +
+                                    '<ul>' +
+                                    '<li>Nome: '+d.nome+'</li>' +
+                                    '<li>Tipo: '+d.tipo+'</li>' +
+                                    '<li>Perigo: '+d.perigo+'</li>' +
+                                    '<li>Texto: '+d.descricao+'</li>' +
+                                    '</ul>' +
+                                    '</p>'+
+                                    '</div>'+
+                                '</div>';
+
+                            var infowindow = new google.maps.InfoWindow({ content: contentString });
+
+                            var m = new google.maps.Marker({
+                                position: {lat: parseFloat(d.lat), lng: parseFloat(d.lng)},
+                                map: map,
+                                title: 'Hello World!'
+                            });
+
+                            m.addListener('click', function() {
+                                infowindow.open(map, m);
+                            });
+
+                            pontos.push(m);
+                        });
+
+                        last_data = JSON.stringify(data);
+                    }
+                }
+            }).done(function( data ) {
+                setTimeout(function () { getPontos(); },3000);
+            });
+        };
+
+        getPontos();
+
+    }
+    function getFormData($form){
+        var unindexed_array = $form.serializeArray();
+        var indexed_array = {};
+
+        $.map(unindexed_array, function(n, i){
+            indexed_array[n['name']] = n['value'];
+        });
+
+        return indexed_array;
+    }
+
+
+    $('[name="data_registro"]').val(moment().format('DD/MM/YYYY HH:mm'));
+
+    $('#reportModal').on('shown.bs.modal', function () {
+        $('.date').mask('00/00/0000 00:00');
+    });
+    $('#send-report').click(function () {
+        var center = map.getCenter();
+        var data   = getFormData($('#report-form'));
+
+        data.lat = center.lat();
+        data.lng = center.lng();
+
+        $.post( "http://localhost/hackbackend/?act=insert", data , function( cb ) {
+            $('#reportModal').modal('toggle');
+            $('#messageModal').modal('toggle');
+        });
+    });
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0rPJopGbsHgwuDBTaVdhhxe2fPvz401o&libraries=places&callback=initMap" async defer></script>
+</body>
+</html>
