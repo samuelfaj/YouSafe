@@ -259,7 +259,7 @@
                             <input type="text" name="nome" class="form-control" placeholder="Nome">
                         </div>
                         <div class="col-md-3 col-4">
-                            <input type="text" name="idade" class="form-control" placeholder="Idade">
+                            <input type="text" class="form-control" placeholder="Idade">
                         </div>
                     </div>
 
@@ -677,7 +677,7 @@
                     }
                 }
             }).done(function( data ) {
-                //setTimeout(function () { getPontos(); },3000);
+                setTimeout(function () { getPontos(); },3000);
             });
         };
 
@@ -770,7 +770,10 @@
     $('#reportModal').on('shown.bs.modal', function () {
         $('.date').mask('00/00/0000 00:00');
     });
-    $('#send-report').click(function () {
+
+    $('#send-report').click(function (e) {
+        e.preventDefault();
+
         var center = map.getCenter();
         var data   = getFormData($('#report-form'));
 
@@ -782,6 +785,10 @@
             $('#messageModal').modal('toggle');
         });
     });
+
+    $('#report-form').submit(function (e) {
+        e.preventDefault();
+    })
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0rPJopGbsHgwuDBTaVdhhxe2fPvz401o&libraries=places&callback=initMap" async defer></script>
 </body>
