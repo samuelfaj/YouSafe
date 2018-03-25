@@ -3,8 +3,35 @@
   <component name="ChangeListManager">
     <list default="true" id="0f5b53c8-873c-471b-b6de-3ec44b85c65f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/css/index.css" afterPath="$PROJECT_DIR$/css/index.css" />
-      <change beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change beforePath="$PROJECT_DIR$/css/index.css" afterPath="$PROJECT_DIR$/frontend/css/index.css" />
+      <change beforePath="$PROJECT_DIR$/img/Bolita.png" afterPath="$PROJECT_DIR$/frontend/img/Bolita.png" />
+      <change beforePath="$PROJECT_DIR$/img/Ellipse 1.png" afterPath="$PROJECT_DIR$/frontend/img/Ellipse 1.png" />
+      <change beforePath="$PROJECT_DIR$/img/Ellipse 11.png" afterPath="$PROJECT_DIR$/frontend/img/Ellipse 11.png" />
+      <change beforePath="$PROJECT_DIR$/img/Ellipse 12.png" afterPath="$PROJECT_DIR$/frontend/img/Ellipse 12.png" />
+      <change beforePath="$PROJECT_DIR$/img/Ellipse 2.png" afterPath="$PROJECT_DIR$/frontend/img/Ellipse 2.png" />
+      <change beforePath="$PROJECT_DIR$/img/Ellipse 36.png" afterPath="$PROJECT_DIR$/frontend/img/Ellipse 36.png" />
+      <change beforePath="$PROJECT_DIR$/img/Ellipse 36@2x.png" afterPath="$PROJECT_DIR$/frontend/img/Ellipse 36@2x.png" />
+      <change beforePath="$PROJECT_DIR$/img/Group 1.png" afterPath="$PROJECT_DIR$/frontend/img/Group 1.png" />
+      <change beforePath="$PROJECT_DIR$/img/Group 10.png" afterPath="$PROJECT_DIR$/frontend/img/Group 10.png" />
+      <change beforePath="$PROJECT_DIR$/img/Group 11.png" afterPath="$PROJECT_DIR$/frontend/img/Group 11.png" />
+      <change beforePath="$PROJECT_DIR$/img/Group 12.png" afterPath="$PROJECT_DIR$/frontend/img/Group 12.png" />
+      <change beforePath="$PROJECT_DIR$/img/Group 2.png" afterPath="$PROJECT_DIR$/frontend/img/Group 2.png" />
+      <change beforePath="$PROJECT_DIR$/img/Group 28.png" afterPath="$PROJECT_DIR$/frontend/img/Group 28.png" />
+      <change beforePath="$PROJECT_DIR$/img/Group 29.png" afterPath="$PROJECT_DIR$/frontend/img/Group 29.png" />
+      <change beforePath="$PROJECT_DIR$/img/Group 3.png" afterPath="$PROJECT_DIR$/frontend/img/Group 3.png" />
+      <change beforePath="$PROJECT_DIR$/img/Group 30.png" afterPath="$PROJECT_DIR$/frontend/img/Group 30.png" />
+      <change beforePath="$PROJECT_DIR$/img/Group 31.png" afterPath="$PROJECT_DIR$/frontend/img/Group 31.png" />
+      <change beforePath="$PROJECT_DIR$/img/Line 20.png" afterPath="$PROJECT_DIR$/frontend/img/Line 20.png" />
+      <change beforePath="$PROJECT_DIR$/img/Path 14.png" afterPath="$PROJECT_DIR$/frontend/img/Path 14.png" />
+      <change beforePath="$PROJECT_DIR$/img/Path 6.png" afterPath="$PROJECT_DIR$/frontend/img/Path 6.png" />
+      <change beforePath="$PROJECT_DIR$/img/Path 8.png" afterPath="$PROJECT_DIR$/frontend/img/Path 8.png" />
+      <change beforePath="$PROJECT_DIR$/img/Rectangle 1.png" afterPath="$PROJECT_DIR$/frontend/img/Rectangle 1.png" />
+      <change beforePath="$PROJECT_DIR$/img/Rectangle 32.png" afterPath="$PROJECT_DIR$/frontend/img/Rectangle 32.png" />
+      <change beforePath="$PROJECT_DIR$/img/Rectangle 33.png" afterPath="$PROJECT_DIR$/frontend/img/Rectangle 33.png" />
+      <change beforePath="$PROJECT_DIR$/img/Rectangle 5.png" afterPath="$PROJECT_DIR$/frontend/img/Rectangle 5.png" />
+      <change beforePath="$PROJECT_DIR$/img/Rectangle 6.png" afterPath="$PROJECT_DIR$/frontend/img/Rectangle 6.png" />
+      <change beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/frontend/index.html" />
+      <change beforePath="$PROJECT_DIR$/js/jquery.mask.js" afterPath="$PROJECT_DIR$/frontend/js/jquery.mask.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,10 +46,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/index.html">
+        <entry file="file://$PROJECT_DIR$/frontend/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="332">
-              <caret line="651" column="155" lean-forward="true" selection-start-line="651" selection-start-column="155" selection-end-line="651" selection-end-column="155" />
+              <caret line="651" column="155" lean-forward="false" selection-start-line="651" selection-start-column="155" selection-end-line="651" selection-end-column="155" />
               <folding>
                 <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="e#117#312#0" expanded="false" />
@@ -84,14 +111,14 @@
         </entry>
       </file>
       <file leaf-file-name="Bolita.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/img/Bolita.png">
+        <entry file="file://$PROJECT_DIR$/frontend/img/Bolita.png">
           <provider selected="true" editor-type-id="images">
             <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="jquery.mask.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/jquery.mask.js">
+        <entry file="file://$PROJECT_DIR$/frontend/js/jquery.mask.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="15">
               <caret line="76" column="16" lean-forward="false" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
@@ -101,7 +128,7 @@
         </entry>
       </file>
       <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/index.css">
+        <entry file="file://$PROJECT_DIR$/frontend/css/index.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="565">
               <caret line="195" column="1" lean-forward="false" selection-start-line="195" selection-start-column="1" selection-end-line="195" selection-end-column="1" />
@@ -164,6 +191,7 @@
         <option value="$PROJECT_DIR$/css/vermelho.css" />
         <option value="$PROJECT_DIR$/css/index.css" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/frontend/index.html" />
       </list>
     </option>
   </component>
@@ -203,11 +231,6 @@
               <item name="hackatown" type="b2602c69:ProjectViewProjectNode" />
               <item name="hackatown" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="hackatown" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hackatown" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -228,6 +251,7 @@
       <recent name="$PROJECT_DIR$/js" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend" />
       <recent name="$PROJECT_DIR$/img" />
     </key>
   </component>
@@ -257,25 +281,24 @@
       <option name="presentableId" value="Default" />
       <updated>1521936303363</updated>
       <workItem from="1521936304808" duration="28221000" />
-      <workItem from="1521979412203" duration="7049000" />
+      <workItem from="1521979412203" duration="7582000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35270000" />
+    <option name="totallyTimeSpent" value="35803000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="797" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24947146" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24947146" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905984" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32905984" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -300,7 +323,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/frontend/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -363,12 +386,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/img/Bolita.png">
+    <entry file="file://$PROJECT_DIR$/frontend/img/Bolita.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/jquery.mask.js">
+    <entry file="file://$PROJECT_DIR$/frontend/js/jquery.mask.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1140">
           <caret line="76" column="16" lean-forward="false" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
@@ -376,7 +399,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/index.css">
+    <entry file="file://$PROJECT_DIR$/frontend/css/index.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="990">
           <caret line="66" column="14" lean-forward="false" selection-start-line="66" selection-start-column="14" selection-end-line="66" selection-end-column="14" />
@@ -387,7 +410,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/vermelho.css" />
-    <entry file="file://$PROJECT_DIR$/js/jquery.mask.js">
+    <entry file="file://$PROJECT_DIR$/frontend/js/jquery.mask.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="76" column="16" lean-forward="false" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
@@ -411,7 +434,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/index.css">
+    <entry file="file://$PROJECT_DIR$/frontend/css/index.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="565">
           <caret line="195" column="1" lean-forward="false" selection-start-line="195" selection-start-column="1" selection-end-line="195" selection-end-column="1" />
@@ -421,15 +444,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/img/Bolita.png">
+    <entry file="file://$PROJECT_DIR$/frontend/img/Bolita.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/frontend/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="332">
-          <caret line="651" column="155" lean-forward="true" selection-start-line="651" selection-start-column="155" selection-end-line="651" selection-end-column="155" />
+          <caret line="651" column="155" lean-forward="false" selection-start-line="651" selection-start-column="155" selection-end-line="651" selection-end-column="155" />
           <folding>
             <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
             <element signature="e#117#312#0" expanded="false" />
